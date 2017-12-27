@@ -1,0 +1,35 @@
+/**
+   Program: Searching for open ports by IP
+*/
+import java.net.*;
+import java.util.ArrayList;
+
+public class PortScan {
+	
+	
+	public static void main(String[] args) {
+		String ip = "127.0.0.1";
+		System.out.println("Searching for ports...");
+		ArrayList<Integer> openports = Findports(ip, 20);
+		System.out.println("Funtion found: "+openports.size()+" ports opened.\n");
+		for(int i=0; i<openports.size(); i++) {
+			System.out.print(openports.get(i)+" ");
+		}
+	}
+	
+	public static ArrayList<Integer> Findports(String ip, int timeout) {
+		ArrayList<Integer> open = new ArrayList<>();
+		for(int port=0; port<=10000; port++) {
+
+			try {
+				Socket socket = new Socket();
+				socket.connect(new InetSocketAddress(ip, port), timeout);
+				socket.close();
+				open.add(port);
+			} catch (Exception ex) {
+				continue;
+			}
+		}
+		return open;
+	}
+}
