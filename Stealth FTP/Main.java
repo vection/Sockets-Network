@@ -1,6 +1,11 @@
 
 import java.io.*;
-
+/**
+ * Program scanning for open port in destination IP, brute force their FTP administrator,
+ * sending selected file from ftp to our comnputer with UDP packets. (DNS payload)
+ * @author Aviv 
+ *
+ */
 public class Main {
 	
 	
@@ -13,12 +18,14 @@ public class Main {
 		String line = null;
 		 String password = null;
 		String path = PortScanner.CustomScan(ip, 20);
-		System.out.println("Searching for open ports...");
 		try {
             FileReader fileReader = new FileReader(path);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while((line = bufferedReader.readLine()) != null) {
                 port = Integer.parseInt(line);
+                System.out.println("Using port : "+port);
+                fileReader.close();
+                bufferedReader.close();
                 break;
             }
 		}

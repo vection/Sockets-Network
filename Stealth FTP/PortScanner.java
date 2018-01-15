@@ -8,7 +8,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+/**
+ * Port Scanner - Searching for open ports by given IP.
+ * @author Aviv
+ *
+ */
 public class PortScanner {
 	
 	
@@ -16,9 +20,7 @@ public class PortScanner {
 		 long startTime = System.currentTimeMillis();
 		  final String ip = "127.0.0.1";
 		  final int timeout = 200;
-		  ScanAll(ip, timeout, 1,1000);
-		   CustomScan(ip, 50);
-		  RandomPort(ip);
+		  ScanAll(ip, timeout, 1,10000);
 		  long endTime   = System.currentTimeMillis();
           long totalTime = endTime - startTime;
           System.out.println("All scan took : "+totalTime/1000+" Seconds");
@@ -60,7 +62,7 @@ public class PortScanner {
 		  try {
 			fr = new FileWriter(file);
 			for(int i=0; i<ports.size(); i++) {
-				fr.write(ports.get(i)+" ");
+				fr.write(ports.get(i)+"\n");
 			}
 			fr.close();
 		} catch (IOException e) {
@@ -161,7 +163,7 @@ public class PortScanner {
 		  try {
 			fr = new FileWriter(file);
 			for(int i=0; i<ports.size(); i++) {
-				fr.write(ports.get(i)+" ");
+				fr.write(ports.get(i)+"\n");
 			}
 			fr.close();
 		} catch (IOException e) {
